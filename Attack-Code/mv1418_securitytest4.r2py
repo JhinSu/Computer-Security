@@ -1,0 +1,23 @@
+# Open a file
+myfile=openfile("look.txt", True)
+ 
+# Attempt to circumvent by overriding with special character first 
+# Close and opens again to circumvent a cached history
+try:
+    myfile.writeat("ABC",0) 
+    myfile.writeat("123",0)
+    myfile.close()
+    myfile=openfile("look.txt", True)
+    myfile.writeat("abc",0)
+
+except ValueError:
+  #If security layer successful, this should fail
+  pass
+
+else:
+  #If security layer fails
+  log("Secure data compromised!\n")	
+ 
+finally:
+  # Close the file after our attempt.
+  myfile.close()
