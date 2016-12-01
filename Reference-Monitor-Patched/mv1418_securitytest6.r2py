@@ -1,0 +1,21 @@
+# Open a file
+myfile=openfile("look.txt", True)
+
+ 
+# Checks if you can read a nonalpha character, if an error is thrown then the security layer has failed
+try:
+    myfile.writeat("A1",0) 
+    readVal = myfile.readat(2,0)
+
+except ValueError:
+  #If security layer fails, this should succeed
+  log("Secure data compromised!\n")	
+  pass
+
+else:
+  #If security layer succeeds
+  pass
+ 
+finally:
+  # Close the file after our attempt.
+  myfile.close()
